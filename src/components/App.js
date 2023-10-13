@@ -32,6 +32,7 @@ function App() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
+    setSelectedCard(null);
   };
 
   return (
@@ -97,7 +98,7 @@ function App() {
         /*onClose={}*/
         /*onSubmit={}*/
       />
-      <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+      <ImagePopup selectedCard={selectedCard} onClose={closeAllPopups} />
     </div>
   );
 }
