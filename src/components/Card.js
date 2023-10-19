@@ -4,9 +4,9 @@ function Card({ card, onCardClick }) {
     onCardClick(card);
   }  
   return (
-    <li className="element" key={card._id} onClick={handleClick} >
+    <li className="element">
       <button className="element__delete"></button>
-      <img className="element__image" src={card.link} alt={card.name} />
+      <img className="element__image" src={card.link} alt={card.name} onClick={handleClick}  />
       <div className="element__container">
         <h2 className="element__title">{card.name}</h2>
         <div>
@@ -18,4 +18,4 @@ function Card({ card, onCardClick }) {
   );
 }
 
-export default Card;
+export default Card; 

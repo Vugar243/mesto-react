@@ -24,7 +24,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
         setCards(data);
       })
       .catch((err) => {
-        console.log('Error fetching initial cards:', err);
+        console.log('Ошибка при загрузке карточек:', err);
       });
   }, []);  
   return (
