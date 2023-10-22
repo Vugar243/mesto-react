@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 import CurrentUserContext from './contexts/CurrentUserContext';
-function Card({ card, onCardClick, onCardLike, onCardDislike, onCardDelete }) {
+function Card({ card, onCardClick, onCardLike, onCardDislike, onCardDelete, likesCount }) {
   const currentUser = useContext(CurrentUserContext);
+  likesCount = card.likes.length;
   const [isLiked, setIsLiked] = useState(card.likes.some((like) => like._id === currentUser._id));
-  const [likesCount, setLikesCount] = useState(card.likes.length);
 
   function handleClick() {
     onCardClick(card);
@@ -13,11 +13,9 @@ function Card({ card, onCardClick, onCardLike, onCardDislike, onCardDelete }) {
     if (isLiked) {
       onCardDislike(card);
       setIsLiked(false);
-      setLikesCount(likesCount - 1); // Уменьшаем количество лайков после дизлайка
     } else {
       onCardLike(card);
       setIsLiked(true);
-      setLikesCount(likesCount + 1); // Увеличиваем количество лайков после лайка
     }
   }
   

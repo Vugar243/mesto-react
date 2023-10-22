@@ -29,11 +29,12 @@ function handleUpdateProfile(e) {
   useEffect(() => {
     setName(currentUser.name); // Обновляем имя из контекста
     setDescription(currentUser.about); // Обновляем описание из контекста
-  }, [currentUser]);
+  }, [isOpen, currentUser]);
   return (
     <PopupWithForm
       name="edit-profile"
       title="Редактировать профиль"
+      submitButtonText="Сохранить"
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleUpdateProfile}
