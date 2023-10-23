@@ -65,30 +65,18 @@ function handleUpdateUser(updatedUser) {
       console.error('Ошибка при обновлении профиля:', err);
     });
 }
-const [likesCount, setLikesCount] = useState('');
-
   function handleCardLike(card) {
-    // Проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
-    
     // Отправляем запрос в API и получаем обновленные данные карточки
-    api.likeCard(card._id, !isLiked).then((newCard) => {
+    api.likeCard(card._id).then((newCard) => {
       // Обновляем стейт карточек, заменяя старую карточку на новую
       setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-      setLikesCount(newCard.likes.length);
-      
     });
   }
   function handleCardDislike(card) {
-    // Проверяем, есть ли уже дизлайк на этой карточке
-    const isDisliked = card.likes.some(i => i._id === currentUser._id);
-    
     // Отправляем запрос в API и получаем обновленные данные карточки
-    api.dislikeCard(card._id, !isDisliked).then((newCard) => {
+    api.dislikeCard(card._id).then((newCard) => {
       // Обновляем стейт карточек, заменяя старую карточку на новую
       setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-      setLikesCount(newCard.likes.length);
-      
     });
   }
   
@@ -141,7 +129,6 @@ const [likesCount, setLikesCount] = useState('');
         onCardDislike={handleCardDislike}
         onCardDelete={handleCardDelete}
         cards={cards}
-        likesCount={likesCount}
       />
       <Footer />
       <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>

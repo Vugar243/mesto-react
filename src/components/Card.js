@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import CurrentUserContext from './contexts/CurrentUserContext';
-function Card({ card, onCardClick, onCardLike, onCardDislike, onCardDelete, likesCount }) {
+function Card({ card, onCardClick, onCardLike, onCardDislike, onCardDelete }) {
   const currentUser = useContext(CurrentUserContext);
-  likesCount = card.likes.length;
-  const [isLiked, setIsLiked] = useState(card.likes.some((like) => like._id === currentUser._id));
+  const likesCount = card.likes.length;
+  const isLiked = card.likes.some((like) => like._id === currentUser._id)
 
   function handleClick() {
     onCardClick(card);
@@ -12,10 +12,8 @@ function Card({ card, onCardClick, onCardLike, onCardDislike, onCardDelete, like
   function handleLikeOrDislikeClick() {
     if (isLiked) {
       onCardDislike(card);
-      setIsLiked(false);
     } else {
       onCardLike(card);
-      setIsLiked(true);
     }
   }
   
